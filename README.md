@@ -1,4 +1,3 @@
-
 # DSA in Python — Goodrich, Tamassia, & Goldwasser
 
 This repo is where I keep all my code and exercise solutions as I read through **Data Structures and Algorithms in Python**.
@@ -15,8 +14,9 @@ Rather than relying on built-in tools, I'm writing these data structures from sc
 
 ---
 
-##  Structure
+## Structure
 
+```text
 ├── ch01_python_primer/
 ├── ch02_oop/
 ├── ch03_algorithm_analysis/
