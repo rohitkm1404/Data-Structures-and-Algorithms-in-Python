@@ -88,6 +88,8 @@ relying on Python’s comprehension syntax and the built-in sum function.
 n = int(input("Enter a positive integer: "))
 print(sum(i**2 for i in range(1, n)))   
 
+
+"""
 R-1.6 
 Write a short Python function that takes a positive integer n and returns
 the sum of the squares of all the odd positive integers smaller than n.
