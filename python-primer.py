@@ -608,3 +608,174 @@ if n > 2:
     print(f"Number of times to divide {n} by 2 before getting a value less than 2: {divide_until_less_than_two(n)}")
 else:
     print("Please enter a positive integer greater than 2.")    
+
+
+"""
+P-1.31
+Write a Python program that can “make change.” Your program should
+take two numbers as input, one that is a monetary amount charged and the
+other that is a monetary amount given. It should then return the number
+of each kind of bill and coin to give back as change for the difference
+between the amount given and the amount charged. The values assigned
+to the bills and coins can be based on the monetary system of any current
+or former government. Try to design your program so that it returns as
+few bills and coins as possible."""
+
+#solution
+def make_change(charged, given):
+    # it calculates the change to be given back and returns the number of each kind of bill and coin needed to make that change
+    change = given - charged
+    if change < 0:
+        return "Insufficient amount given."
+    
+    denominations = [100, 50, 20, 10, 5, 1, 0.25, 0.10, 0.05, 0.01]  # Example denominations in dollars
+    change_dict = {}
+    
+    for denom in denominations:
+        count = int(change // denom)
+        if count > 0:
+            change_dict[denom] = count
+            change -= count * denom
+    
+    return change_dict
+
+charged = float(input("Enter the amount charged: "))
+given = float(input("Enter the amount given: "))
+change = make_change(charged, given)
+if isinstance(change, str):
+    print(change)
+else:
+    print("Change to be given back:")
+    for denom, count in change.items():
+        print(f"${denom:.2f}: {count} piece(s)")
+
+
+
+"""
+P-1.32
+Write a Python program that can simulate a simple calculator, using the
+console as the exclusive input and output device. That is, each input to the
+calculator, be it a number, like 12.34 or 1034, or an operator, like + or =,
+can be done on a separate line. After each such input, you should output
+to the Python console what would be displayed on your calculator.
+"""
+
+#solution
+def simulate_calculator():
+    # it simulates a simple calculator that takes numbers and operators as input and displays the result after each input
+    current_value = 0
+    operator = None
+    
+    while True:
+        user_input = input("Enter a number or operator (+, -, *, /, =): ")
+        
+        if user_input in ['+', '-', '*', '/']:
+            operator = user_input
+        elif user_input == '=':
+            print(f"Result: {current_value}")
+            current_value = 0
+            operator = None
+        else:
+            try:
+                number = float(user_input)
+                if operator is None:
+                    current_value = number
+                else:
+                    if operator == '+':
+                        current_value += number
+                    elif operator == '-':
+                        current_value -= number
+                    elif operator == '*':
+                        current_value *= number
+                    elif operator == '/':
+                        if number != 0:
+                            current_value /= number
+                        else:
+                            print("Error: Division by zero.")
+                            continue
+                print(f"Current value: {current_value}")
+            except ValueError:
+                print("Invalid input. Please enter a number or an operator.")
+
+
+simulate_calculator()
+
+
+"""
+P-1.33
+Write a Python program that simulates a handheld calculator. Your pro-
+gram should process input from the Python console representing buttons
+that are “pushed,” and then output the contents of the screen after each op-
+eration is performed. Minimally, your calculator should be able to process
+the basic arithmetic operations and a reset/clear operation.
+"""
+
+#solution
+def handheld_calculator():
+    # it simulates a handheld calculator that processes button inputs and displays the result after each operation
+    current_value = 0
+    operator = None
+    
+    while True:
+        user_input = input("Enter a number, operator (+, -, *, /), or 'C' to clear: ")
+        
+        if user_input in ['+', '-', '*', '/']:
+            operator = user_input
+        elif user_input.upper() == 'C':
+            current_value = 0
+            operator = None
+            print("Calculator cleared. Current value: 0")
+        else:
+            try:
+                number = float(user_input)
+                if operator is None:
+                    current_value = number
+                else:
+                    if operator == '+':
+                        current_value += number
+                    elif operator == '-':
+                        current_value -= number
+                    elif operator == '*':
+                        current_value *= number
+                    elif operator == '/':
+                        if number != 0:
+                            current_value /= number
+                        else:
+                            print("Error: Division by zero.")
+                            continue
+                print(f"Current value: {current_value}")
+            except ValueError:
+                print("Invalid input. Please enter a number, an operator, or 'C' to clear.")
+    
+handheld_calculator()
+
+
+"""
+P-1.34
+A common punishment for school children is to write out a sentence mul-
+tiple times. Write a Python stand-alone program that will write out the
+following sentence one hundred times: “I will never spam my friends
+again.” Your program should number each of the sentences and it should
+make eight different random-looking typos."""
+
+#solution
+def spam_friends():
+    # it writes out the sentence "I will never spam my friends again." one hundred times, numbering each sentence and introducing random typos
+    import random
+    
+    sentence = "I will never spam my friends again."
+    typos = ["I will never spam my frinds again.", "I will never spam my frends again.", 
+             "I will never spam my frieneds again.", "I will never spam my frineds again.", 
+             "I will never spam my frinds agian.", "I will never spam my frends agian.", 
+             "I will never spam my frieneds agian.", "I will never spam my frineds agian."]
+    
+    for i in range(1, 101):
+        if i % 12 == 0:  # Introduce a typo every 12 sentences
+            typo = random.choice(typos)
+            print(f"{i}: {typo}")
+        else:
+            print(f"{i}: {sentence}")
+            
+spam_friends()
+
+
