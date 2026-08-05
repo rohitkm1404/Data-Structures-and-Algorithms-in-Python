@@ -387,7 +387,100 @@ print(data)
 
 
 
+"""
+C-1.21
+Write a Python program that repeatedly reads lines from standard input
+until an EOFError is raised, and then outputs those lines in reverse order
+(a user can indicate end of input by typing ctrl-D).
+"""
+
+#solution
+def read_lines_reverse():
+    # it reads lines from standard input until an EOFError is raised, and then outputs those lines in reverse order
+    lines = []
+    try:
+        while True:
+            line = input()
+            lines.append(line)
+    except EOFError:
+        pass
+
+    for line in reversed(lines):
+        print(line)
+        
 
 
+"""
+C-1.22 
+Write a short Python program that takes two arrays a and b of length n
+storing int values, and returns the dot product of a and b. That is, it returns
+an array c of length n such that c[i]= a[i] · b[i], for i = 0,...,n−1.
+"""
 
+#solution
+def dot_product(a, b):
+    # it calculates the dot product of two arrays a and b by multiplying corresponding elements and storing the results in a new array c
+    if len(a) != len(b):
+        raise ValueError("Arrays must be of the same length")
+    
+    c = [a[i] * b[i] for i in range(len(a))]
+    return c
+
+a = [int(x) for x in input("Enter elements of array a separated by space: ").split()]
+b = [int(x) for x in input("Enter elements of array b separated by space: ").split()]
+print(dot_product(a, b))    
+
+
+"""
+C-1.23
+Give an example of a Python code fragment that attempts to write an element
+ to a list based on an index that may be out of bounds. If that index
+is out of bounds, the program should catch the exception that results, and
+print the following error message:
+“Don’t try buffer overflow attacks in Python!”"""
+
+#solution
+try:
+    lst = [1, 2, 3]
+    index = int(input("Enter an index to write to the list: "))
+    lst[index] = 10  # Attempting to write to the list at the given index
+
+except IndexError:
+    print("Don’t try buffer overflow attacks in Python!")
+
+
+"""
+C-1.24
+Write a short Python function that counts the number of vowels in a given
+character string.
+"""
+
+#solution
+def count_vowels(s):
+    # it counts the number of vowels in the given string s by iterating through each character and checking if it is a vowel
+    vowels = 'aeiouAEIOU'
+    count = sum(1 for char in s if char in vowels)
+    return count
+
+s = input("Enter a string: ")
+print(f"Number of vowels in the string: {count_vowels(s)}")
+
+
+""
+"""
+C-1.25
+Write a short Python function that takes a string s, representing a sentence,
+and returns a copy of the string with all punctuation removed. For exam-
+ple, if given the string "Let s try, Mike.", this function would return
+"Lets try Mike".
+"""
+
+#solution
+
+def remove_punctuation(s):
+    # it removes all punctuation from the given string s by iterating through each character and keeping only alphanumeric characters and spaces
+    return ''.join(char for char in s if char.isalnum() or char.isspace())
+
+s = input("Enter a string: ")
+print(f"String with punctuation removed: {remove_punctuation(s)}")
 
