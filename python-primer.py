@@ -484,3 +484,127 @@ def remove_punctuation(s):
 s = input("Enter a string: ")
 print(f"String with punctuation removed: {remove_punctuation(s)}")
 
+
+"""
+C-1.26
+Write a short program that takes as input three integers, a, b, and c, from
+the console and determines if they can be used in a correct arithmetic
+formula (in the given order), like “a+b = c,” “a = b−c,” or “a ∗ b = c.”
+"""
+
+#solution
+def check_arithmetic_formula(a, b, c):
+    # it checks if the three integers a, b, and c can be used in a correct arithmetic formula in the given order
+    if a + b == c:
+        return f"{a} + {b} = {c}"
+    elif a == b - c:
+        return f"{a} = {b} - {c}"
+    elif a * b == c:
+        return f"{a} * {b} = {c}"
+    else:
+        return "No valid arithmetic formula found."
+
+a = int(input("Enter the first integer (a): "))
+b = int(input("Enter the second integer (b): "))
+c = int(input("Enter the third integer (c): "))
+print(check_arithmetic_formula(a, b, c))
+
+
+"""
+C-1.27
+In Section 1.8, we provided three different implementations of a generator
+that computes factors of a given integer. The third of those implementa-
+tions, from page 41, was the most efficient, but we noted that it did not
+yield the factors in increasing order. Modify the generator so that it reports
+factors in increasing order, while maintaining its general performance ad-
+vantages."""
+
+#solution
+def factors(n):
+    # it generates the factors of the given integer n in increasing order
+    small_factors = []
+    large_factors = []
+    
+    for i in range(1, int(n**0.5) + 1):
+        if n % i == 0:
+            small_factors.append(i)
+            if i != n // i:  # Avoid adding the square root twice for perfect squares
+                large_factors.append(n // i)
+    
+    # Yield small factors first, then large factors in reverse order
+    for factor in small_factors:
+        yield factor
+    for factor in reversed(large_factors):
+        yield factor
+
+
+"""
+C-1.28
+C-1.28 The p-norm of a vector v =(v1,v2,...,vn) in n-dimensional space is de-
+fined as
+||v|| = ᵖ√(v₁ᵖ + v₂ᵖ + ... + vₙᵖ).
+For the special case of p = 2, this results in the traditional Euclidean
+norm, which represents the length of the vector. For example, the Eu-
+clidean norm of a two-dimensional vector with coordinates (4,3) has a
+Euclidean norm of √42 +32 = √16+9 = √25 = 5.
+ Give an implementation of a function named norm such that norm(v, p) returns the p-norm
+value of v and norm(v) returns the Euclidean norm of v. You may assume
+that v is a list of numbers.
+"""
+
+#solution
+def norm(v, p):
+    # it calculates the p-norm of the vector v by summing the p-th powers of its elements and taking the p-th root
+    return sum(abs(x) ** p for x in v) ** (1 / p)
+
+v = [4, 3]
+p = 2
+print(f"The {p}-norm of the vector {v} is: {norm(v, p)}")
+
+
+
+
+
+"""----------------------------------------PROJECTS--------------------------------------------"""
+
+
+
+
+"""
+P-1.29
+Write a Python program that outputs all possible strings formed by using
+the characters c , a , t , d , o , and g exactly once.
+"""
+
+#solution
+
+def generate_strings():
+    characters = ['c', 'a', 't', 'd', 'o', 'g']
+    all_permutations = permutations(characters)
+    for perm in all_permutations:
+        print(''.join(perm))
+
+generate_strings()
+
+
+"""
+P-1.30
+Write a Python program that can take a positive integer greater than 2 as
+input and write out the number of times one must repeatedly divide this
+number by 2 before getting a value less than 2.
+"""
+
+#solution
+def divide_until_less_than_two(n):
+    # it counts the number of times n can be divided by 2 before it becomes less than 2
+    count = 0
+    while n >= 2:
+        n /= 2
+        count += 1
+    return count
+
+n = int(input("Enter a positive integer greater than 2: "))
+if n > 2:
+    print(f"Number of times to divide {n} by 2 before getting a value less than 2: {divide_until_less_than_two(n)}")
+else:
+    print("Please enter a positive integer greater than 2.")    
