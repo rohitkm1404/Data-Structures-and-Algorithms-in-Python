@@ -274,5 +274,120 @@ data = [int(x) for x in input("Enter numbers separated by space: ").split()]
 print(are_all_distinct(data))
 
 
+"""
+C-1.16
+In our implementation of the scale function (page 25 
+def scale(data, factor):
+for j in range(len(data)):
+data[j] = factor))
+the body of the loop
+executes the command data[j] = factor. We have discussed that numeric
+types are immutable, and that use of the = operator in this context causes
+the creation of a new instance (not the mutation of an existing instance).
+How is it still possible, then, that our implementation of scale changes the
+actual parameter sent by the caller?
+"""
+
+#solution
+
+# In Python, when we pass a mutable object (like a list) to a function, we are passing a reference to that object, not a copy of it.
+def scale(data, factor):
+    for j in range(len(data)):
+        data[j] = factor  # This modifies the elements of the list in place, which affects the original list passed by the caller.
+
+data = [1, 2, 3]
+scale(data, 2)
+print(data)  # Output will be [2, 2, 2], showing that the original list was modified.
+
+
+"""
+C-1.17
+Had we implemented the scale function (page 25) as follows, does it work
+properly?
+def scale(data, factor):
+    for val in data:
+         val *= factor
+Explain why or why not.
+"""
+
+#solution
+"""
+This implementation does not work properly because `val` is a local variable
+that holds a copy of each element in the list `data`.
+Modifying `val` does not change the original elements in `data`. 
+Therefore, the original list remains unchanged after the function call."""
+
+
+"""
+C-1.18
+Demonstrate how to use Python’s list comprehension syntax to produce
+the list [0, 2, 6, 12, 20, 30, 42, 56, 72, 90].
+"""
+
+#solution
+# it uses list comprehension to produce the desired list of numbers based on the formula n*(n-1) for n in range(10)
+print([n*(n+1) for n in range(10)])
+
+#or
+"""
+l=[]
+for n in range(10):
+    v=n*(n+1)
+    l.append(v)
+print(l)
+"""
+
+
+
+"""
+C-1.19
+Demonstrate how to use Python’s list comprehension syntax to produce
+the list [ a , b , c , ..., z ], but without having to type all 26 such
+characters literally.
+"""
+
+#solution
+# it uses list comprehension to produce the desired list of lowercase letters from 'a' to 'z'
+# using the chr function and ASCII values
+
+print([chr(i) for i in range(ord('a'), ord('z') + 1)])
+
+#or
+"""
+l=[]
+for i in range(ord('a'), ord('z') + 1):#for i in range(97, 123):
+    l.append(chr(i))
+print(l)
+"""
+
+
+"""
+C-1.20
+Python’s random module includes a function shuffle(data) that accepts a
+list of elements and randomly reorders the elements so that each possi-
+ble order occurs with equal probability. The random module includes a
+more basic function randint(a, b) that returns a uniformly random integer
+from a to b (including both endpoints). Using only the randint function,
+implement your own version of the shuffle function.
+"""
+
+#solution
+
+
+def my_shuffle(data):
+    # it shuffles the list by iterating through the list in reverse order and swapping each element with
+    # a randomly chosen element from the portion of the list that has not yet been shuffled
+    for i in range(len(data) - 1, 0, -1):
+        j = random.randint(0, i)
+        data[i], data[j] = data[j], data[i]
+
+data = [1, 2, 3, 4, 5]
+my_shuffle(data)
+print(data)
+
+
+
+
+
 
 
