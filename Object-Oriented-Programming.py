@@ -21,3 +21,34 @@ A malfunction could result in airbags not deploying during an accident, leading 
  These systems prevent the wheels from locking up during braking, allowing the driver to maintain steering control.
 
 """
+
+
+"""
+R-2.2
+Give an example of a software application in which adaptability can mean
+the difference between a prolonged lifetime of sales and bankruptcy.
+"""
+#solution
+
+"""
+An example of a software application where adaptability 
+is crucial is a mobile operating system, such as Android or iOS.
+"""
+
+
+"""
+R-2.3
+Describe a component from a text-editor GUI and the methods that it encapsulates.
+"""
+
+#solution
+
+"""
+A component from a text-editor GUI could be the "Text Area"where users input 
+and edit their text.
+Methods that it might encapsulate include:
+- insert_text(): Insert text at a specific position.
+- delete_text(): Delete text within a specified range.
+- get_text(): Retrieve the current text content.
+- set_text(): Set the text content.
+"""
