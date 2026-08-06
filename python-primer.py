@@ -779,3 +779,37 @@ def spam_friends():
 spam_friends()
 
 
+"""
+p-1.35
+The birthday paradox says that the probability that two people in a room
+will have the same birthday is more than half, provided n, the number of
+people in the room, is more than 23. This property is not really a paradox,
+but many people find it surprising. Design a Python program that can test
+this paradox by a series of experiments on randomly generated birthdays,
+which test this paradox for n = 5,10,15,20,...,100.
+"""
+
+#solution
+
+import random
+
+def generate_birthdays(n):
+    return [random.randint(1, 365) for _ in range(n)]
+
+def has_duplicate(birthdays):
+    return len(birthdays) != len(set(birthdays))
+
+def test_birthday_paradox():
+    for n in range(5, 101, 5):
+        count = 0
+        for _ in range(1000):  # Run 1000 experiments
+            birthdays = generate_birthdays(n)
+            if has_duplicate(birthdays):
+                count += 1
+        probability = count / 1000
+        print(f"n = {n}, Probability = {probability:.2f}")
+n=int(input("Enter the number of people in the room (n): "))
+test_birthday_paradox()
+
+
+
