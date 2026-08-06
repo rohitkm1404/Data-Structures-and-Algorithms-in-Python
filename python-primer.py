@@ -812,4 +812,28 @@ n=int(input("Enter the number of people in the room (n): "))
 test_birthday_paradox()
 
 
+"""
+P-1.36
+Write a Python program that inputs a list of words, separated by white-
+space, and outputs how many times each word appears in the list. You
+need not worry about efficiency at this point, however, as this topic is
+something that will be addressed later in this book.
+"""
+
+#solution
+def count_word_occurrences():
+    # it counts the number of times each word appears in the input list of words
+    words = input("Enter a list of words separated by whitespace: ").split()
+    word_count = {}
+    
+    for word in words:
+        if word in word_count:
+            word_count[word] += 1
+        else:
+            word_count[word] = 1
+            
+    for word, count in word_count.items():
+        print(f"{word}: {count}")
+        
+count_word_occurrences()
 
