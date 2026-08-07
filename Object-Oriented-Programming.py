@@ -89,3 +89,40 @@ class Flower:
     def get_price(self) -> float:
         return self.price
 
+
+"""
+R-2.5
+Use the techniques of Section 1.7 to revise the charge and make payment
+methods of the CreditCard class to ensure that the caller sends a number
+as a parameter.
+"""
+
+#solution
+"""the following is a revised version of the charge and make_payment methods
+of the CreditCard class that ensures the caller sends a number as a parameter:
+"""
+
+class CreditCard:
+    def __init__(self, customer, bank, account, limit):
+        self.customer = customer
+        self.bank = bank
+        self.account = account
+        self.limit = limit
+        self.balance = 0
+
+    def charge(self, amount):
+        if not isinstance(amount, (int, float)):
+            raise ValueError("Amount must be a number.")
+        if amount + self.balance > self.limit:
+            return False
+        else:
+            self.balance += amount
+            return True
+
+    def make_payment(self, amount):
+        if not isinstance(amount, (int, float)):
+            raise ValueError("Amount must be a number.")
+        self.balance -= amount
+
+
+
