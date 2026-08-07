@@ -143,4 +143,26 @@ def make_payment(self, amount):
     self.balance -= amount
 
 
+"""
+R-2.7
+The CreditCard class of Section 2.3 initializes the balance of a new ac-
+count to zero. Modify that class so that a new account can be given a
+nonzero balance using an optional fifth parameter to the constructor. The
+four-parameter constructor syntax should continue to produce an account
+with zero balance.
+"""
+
+#solution
+class CreditCard:
+    def __init__(self, customer, bank, account, limit, balance=0):
+        self.customer = customer
+        self.bank = bank
+        self.account = account
+        self.limit = limit
+        self.balance = balance
+
+
+
+
+
 
